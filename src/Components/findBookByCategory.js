@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Select from 'react-select';
 
-const FindByCategory = () => {
+const FindByCategory = ({ userId}) => {
     const [category, setCategory] = useState();
     const [books, setBooks] = useState([]);
     const [categorySelect, setCategorySelect] = useState("Select");
@@ -10,11 +10,6 @@ const FindByCategory = () => {
     function handleSubmit(e) {
         e.preventDefault();
         e.stopPropagation();
-        
-
-        let activities = JSON.parse(localStorage.getItem("activities")) || [];
-
-        console.log(activities)
 
         updateLogs("book-search by category");
 
@@ -27,7 +22,7 @@ const FindByCategory = () => {
                     setBooks(data.entries)
                     localStorage.setItem("books", JSON.stringify(data.entries));
                 } else {
-                    setBooks("No Book Found");
+                    setBooks([]);
                 }
             })
     }
@@ -35,10 +30,8 @@ const FindByCategory = () => {
     function updateLogs(activity) {
         let activities = JSON.parse(localStorage.getItem("activities")) || [];
 
-        console.log(activities)
-
         activities.push({
-            userId: 12345,
+            userId: userId,
             activity: activity,
             date: Date.now(),
             sql: "INSERT into Activities (activity, date, userId) VALUES (activity, date, userId)"

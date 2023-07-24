@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Select from 'react-select';
 
-const FindByDescription = () => {
+const FindByDescription = ({ userId}) => {
     const [description, setDescription] = useState();
     const [books, setBooks] = useState([]);
     const [categorySelect, setCategorySelect] = useState("Select");
@@ -10,11 +10,6 @@ const FindByDescription = () => {
     function handleSubmit(e) {
         e.preventDefault();
         e.stopPropagation();
-        
-
-        let activities = JSON.parse(localStorage.getItem("activities")) || [];
-
-        console.log(activities)
 
         updateLogs("book-search by description");
 
@@ -27,7 +22,7 @@ const FindByDescription = () => {
                     setBooks(data.entries)
                     localStorage.setItem("books", JSON.stringify(data.entries));
                 } else {
-                    setBooks("No Book Found");
+                    setBooks([]);
                 }
             })
     }
@@ -35,10 +30,8 @@ const FindByDescription = () => {
     function updateLogs(activity) {
         let activities = JSON.parse(localStorage.getItem("activities")) || [];
 
-        console.log(activities)
-
         activities.push({
-            userId: 12345,
+            userId: userId,
             activity: activity,
             date: Date.now(),
             sql: "INSERT into Activities (activity, date, userId) VALUES (activity, date, userId)"
@@ -64,9 +57,11 @@ const FindByDescription = () => {
         }
     }
 
-    books.forEach(item => {
-        categories.push(item.Category)
-    })
+    if (books) {
+        books.forEach(item => {
+            categories.push(item.Category)
+        })
+    }    
 
     const removeDuplicates = [...new Set(categories)];
 
@@ -79,7 +74,7 @@ const FindByDescription = () => {
                     <input type="text" onChange={(e) => setDescription(e.target.value)}></input>
                 </form>
             </div>
-            {books.length ? <div className='filter-buttons'> <div className='filter'>Filter By Category
+            {books.length > 0 ? <div className='filter-buttons'> <div className='filter'>Filter By Category
                 <select
                     onChange={handleChange}
                 >
@@ -97,10 +92,10 @@ const FindByDescription = () => {
                 <div id='book-description'>Description</div>
                 <div id='book-category'>Category</div>
                 <div id='book-link'>Link</div>
-                {books ? books.map((item, key) => {
+                {books.length > 0 ? books.map((item, key) => {
                     return (
                         <>
-                            <div className='row-data'>{item.API}</div>
+                            <div key={key} className='row-data'>{item.API}</div>
                             <div className='row-data'>{item.Description}</div>
                             <div className='row-data'>{item.Category}</div>
                             <div className='row-data'>{item.Link}</div>

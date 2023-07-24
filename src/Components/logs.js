@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { CSVLink, CSVDownload } from "react-csv";
 
-const Logs = () => {
+const Logs = ({ userId}) => {
     const [logs, setLogs] = useState([]);
     // localStorage.clear();
 
@@ -9,8 +9,22 @@ const Logs = () => {
         setLogs((JSON.parse(localStorage.getItem("activities"))))
     }
 
+    function updateLogs() {
+        let activities = JSON.parse(localStorage.getItem("activities")) || [];
+
+            activities.push({
+                userId: userId,
+                activity: "User browsed logs",
+                date: Date.now(),
+                sql: "INSERT into Activities (activity, date, userId) VALUES (activity, date, userId)"
+            })
+
+            localStorage.setItem("activities", JSON.stringify(activities));
+    }
+
     useEffect(() => {
         getLogs();
+        updateLogs();
     }, [])
 
     const formatDate = (date) => {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const RandomByCategory = () => {
+const RandomByCategory = ({ userId}) => {
     const [random, setRandom] = useState([]);
     const [request, setRequest] = useState();
 
@@ -11,7 +11,7 @@ const RandomByCategory = () => {
         let activities = JSON.parse(localStorage.getItem("activities")) || [];
 
         activities.push({
-            userId: 12345,
+            userId: userId,
             activity: "random book search by category",
             date: Date.now(),
             sql: "INSERT into Activities (activity, date, userId) VALUES (activity, date, userId)"
@@ -28,7 +28,7 @@ const RandomByCategory = () => {
                     setRandom(data.entries)
                     localStorage.setItem("books", JSON.stringify(data.entries));
                 } else {
-                    setRandom("No Book Found");
+                    setRandom([]);
                 }
             })
     }

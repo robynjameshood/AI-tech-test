@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const Categories = () => {
+const Categories = ({ userId}) => {
     const [categories, setCategories] = useState([]);
 
     async function getCategories() {
@@ -17,7 +17,7 @@ const Categories = () => {
         let activities = JSON.parse(localStorage.getItem("activities")) || [];
 
             activities.push({
-                userId: 12345,
+                userId: userId,
                 activity: "User browsed categories",
                 date: Date.now(),
                 sql: "INSERT into Activities (activity, date, userId) VALUES (activity, date, userId)"
@@ -34,9 +34,9 @@ const Categories = () => {
     return (
         <>
         <div className="categories-container">
-        {categories.length ? categories.map(item => {
+        {categories.length ? categories.map((item, key) => {
             return (
-                <div className="item">{item}</div>
+                <div key={key} className="item">{item}</div>
             )
         }) : ""}
         </div>

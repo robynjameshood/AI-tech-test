@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const Random = () => {
+const Random = ({ userId}) => {
     const [books, setBooks] = useState([]);
 
     async function randomBook(e) {
@@ -16,14 +16,14 @@ const Random = () => {
                     setBooks(data.entries)
                     localStorage.setItem("books", JSON.stringify(data.entries));
                 } else {
-                    setBooks("No Book Found");
+                    setBooks([]);
                 }
             })
 
         let activities = JSON.parse(localStorage.getItem("activities")) || [];
 
         activities.push({
-            userId: 12345,
+            userId: userId,
             activity: "random book search",
             date: Date.now(),
             sql: "INSERT into Activities (activity, date, userId) VALUES (activity, date, userId)"
@@ -43,10 +43,10 @@ const Random = () => {
                         <div id='book-description'>Description</div>
                         <div id='book-category'>Category</div>
                         <div id='book-link'>Link</div>
-                        {books ? books.map(item => {
+                        {books ? books.map((item, key) => {
                             return (
                                 <>
-                                    <div className="row-data">{item.API}</div>
+                                    <div key={key} className="row-data">{item.API}</div>
                                     <div className="row-data">{item.Description}</div>
                                     <div className="row-data">{item.Category}</div>
                                     <div className="row-data">{item.Link}</div>
