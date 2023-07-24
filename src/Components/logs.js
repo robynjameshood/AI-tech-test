@@ -46,10 +46,10 @@ const Logs = ({ userId }) => {
                 return (
                     <>
                         <div key={key} className="row-data">UserID: {item.userId}</div>
-                        <div className="row-data">Date: {formatDate(item.date)}</div>
-                        <div className="row-data">Activity: {item.activity}</div>
-                        <div className="row-data">Request: {item.request}</div>
-                        <div className="row-data">SQL Statement: {item.sql}</div>
+                        <div className="row-data">{formatDate(item.date)}</div>
+                        <div className="row-data">{item.activity}</div>
+                        <div className="row-data">{item.request}</div>
+                        <div className="row-data">{item.sql}</div>
                     </>
                 )
             }) : ""}
