@@ -45,7 +45,7 @@ const Logs = ({ userId }) => {
                 {logs ? logs.map((item, key) => {
                 return (
                     <>
-                        <div key={key} className="row-data">UserID: {item.userId}</div>
+                        <div key={key} className="row-data">{item.userId}</div>
                         <div className="row-data">{formatDate(item.date)}</div>
                         <div className="row-data">{item.activity}</div>
                         <div className="row-data">{item.request}</div>
