@@ -35,7 +35,7 @@ const FindByDescription = ({ userId}) => {
             activity: activity,
             request: description,
             date: Date.now(),
-            sql: "INSERT into Activities (activity, date, userId) VALUES (activity, date, userId)"
+            sql: "INSERT into Activities (activity, request, date, userId) VALUES (activities.activity, activities.request, activities.date, activities.userId)"
         })
 
         localStorage.setItem("activities", JSON.stringify(activities));
@@ -47,7 +47,7 @@ const FindByDescription = ({ userId}) => {
     }
 
     const handleChange = (e) => {
-        updateLogs("user filtered books by description");
+        updateLogs("user filtered books by category");
 
         if (e.target.value !== "Select") {
             const filtered = books.filter(item => item.Category === e.target.value);

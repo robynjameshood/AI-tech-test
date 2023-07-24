@@ -33,7 +33,7 @@ const RandomByTitle = ({ userId}) => {
             activity: activity,
             request: title,
             date: Date.now(),
-            sql: "INSERT into Activities (activity, date, userId) VALUES (activity, date, userId)"
+            sql: "INSERT into Activities (activity, request, date, userId) VALUES (activities.activity, activities.request, activities.date, activities.userId)"
         })
 
         localStorage.setItem("activities", JSON.stringify(activities));
