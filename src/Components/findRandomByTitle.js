@@ -9,7 +9,7 @@ const RandomByTitle = ({ userId}) => {
         e.preventDefault();
         e.stopPropagation();
 
-        updateLogs("random-search by title");
+        updateLogs("random-search by title", title);
 
         fetch(`https://api.publicapis.org/random?title=${title}`, {
             method: 'GET',
@@ -25,12 +25,13 @@ const RandomByTitle = ({ userId}) => {
             })
     }
 
-    function updateLogs(activity) {
+    function updateLogs(activity, title) {
         let activities = JSON.parse(localStorage.getItem("activities")) || [];
 
         activities.push({
             userId: userId,
             activity: activity,
+            request: title,
             date: Date.now(),
             sql: "INSERT into Activities (activity, date, userId) VALUES (activity, date, userId)"
         })

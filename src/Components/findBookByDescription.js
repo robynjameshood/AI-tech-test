@@ -11,7 +11,7 @@ const FindByDescription = ({ userId}) => {
         e.preventDefault();
         e.stopPropagation();
 
-        updateLogs("book-search by description");
+        updateLogs("book-search by description", description);
 
         fetch(`https://api.publicapis.org/entries?Description=${description}`, {
             method: 'GET',
@@ -27,12 +27,13 @@ const FindByDescription = ({ userId}) => {
             })
     }
 
-    function updateLogs(activity) {
+    function updateLogs(activity, description) {
         let activities = JSON.parse(localStorage.getItem("activities")) || [];
 
         activities.push({
             userId: userId,
             activity: activity,
+            request: description,
             date: Date.now(),
             sql: "INSERT into Activities (activity, date, userId) VALUES (activity, date, userId)"
         })

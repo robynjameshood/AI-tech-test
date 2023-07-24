@@ -11,7 +11,7 @@ const FindBook = ({ userId}) => {
         e.preventDefault();
         e.stopPropagation();
 
-        updateLogs("book-search");
+        updateLogs("book-search", request);
 
         fetch(`https://api.publicapis.org/entries?title=${request}`, {
             method: 'GET',
@@ -27,14 +27,15 @@ const FindBook = ({ userId}) => {
             })
     }
 
-    function updateLogs(activity) {
+    function updateLogs(activity, request) {
         let activities = JSON.parse(localStorage.getItem("activities")) || [];
 
         activities.push({
             userId: userId,
             activity: activity,
+            request: request,
             date: Date.now(),
-            sql: "INSERT into Activities (activity, date, userId) VALUES (activity, date, userId)"
+            sql: "INSERT into Activities (activity, request, date, userId) VALUES (activity, request, date, userId)"
         })
 
         localStorage.setItem("activities", JSON.stringify(activities));

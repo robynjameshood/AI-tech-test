@@ -50,6 +50,15 @@
   overflow-y: scroll;
 }
 
+.log-details-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  width: 100%;
+  margin: auto;
+  row-gap: 5px;
+  overflow-y: scroll;
+}
+
 .row-data {
   background-color: lightgray;
 }

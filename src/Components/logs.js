@@ -36,10 +36,11 @@ const Logs = ({ userId }) => {
         <>
             <div className="disclaimer">The SQL statements per entry assume there are two tables Users/Activities - Linked via Primary/Foreign Key on UserId</div>
             <CSVLink data={logs}>Download log as CSV</CSVLink>
-            <div className='book-details-grid'>
+            <div className='log-details-grid'>
                 <div id='userId'>User ID</div>
                 <div id='date'>Date</div>
                 <div id='activity'>Activity</div>
+                <div id='request'>Request</div>
                 <div id='sql'>SQL Statememt</div>
                 {logs ? logs.map(item => {
                 return (
@@ -47,6 +48,7 @@ const Logs = ({ userId }) => {
                         <div className="row-data">UserID: {item.userId}</div>
                         <div className="row-data">Date: {formatDate(item.date)}</div>
                         <div className="row-data">Activity: {item.activity}</div>
+                        <div className="row-data">Request: {item.request}</div>
                         <div className="row-data">SQL Statement: {item.sql}</div>
                     </>
                 )
