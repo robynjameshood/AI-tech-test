@@ -20,11 +20,15 @@ const Random = ({ userId}) => {
                 }
             })
 
+        updateLogs("random book search");
+    }
+
+    function updateLogs(activity) {
         let activities = JSON.parse(localStorage.getItem("activities")) || [];
 
         activities.push({
             userId: userId,
-            activity: "random book search",
+            activity: activity,
             date: Date.now(),
             sql: "INSERT into Activities (activity, date, userId) VALUES (activity, date, userId)"
         })

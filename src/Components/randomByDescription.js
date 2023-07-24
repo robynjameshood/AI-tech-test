@@ -8,16 +8,7 @@ const RandomByDescription = ({ userId}) => {
         e.preventDefault();
         e.stopPropagation();
 
-        let activities = JSON.parse(localStorage.getItem("activities")) || [];
-
-        activities.push({
-            userId: userId,
-            activity: "random book search by description",
-            date: Date.now(),
-            sql: "INSERT into Activities (activity, date, userId) VALUES (activity, date, userId)"
-        })
-
-        localStorage.setItem("activities", JSON.stringify(activities));
+        updateLogs("random book search by description");
 
         fetch(`https://api.publicapis.org/random?description=${request}`, {
             method: 'GET',
@@ -31,6 +22,19 @@ const RandomByDescription = ({ userId}) => {
                     setRandom([]);
                 }
             })
+    }
+
+    function updateLogs(activity) {
+        let activities = JSON.parse(localStorage.getItem("activities")) || [];
+
+        activities.push({
+            userId: userId,
+            activity: activity,
+            date: Date.now(),
+            sql: "INSERT into Activities (activity, date, userId) VALUES (activity, date, userId)"
+        })
+
+        localStorage.setItem("activities", JSON.stringify(activities));
     }
 
     return (
