@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 
 const Random = () => {
     const [books, setBooks] = useState([]);
-    const [random, setRandom] = useState([]);
-    const [request, setRequest] = useState();
 
     async function randomBook(e) {
         e.preventDefault();
