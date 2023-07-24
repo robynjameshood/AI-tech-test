@@ -83,3 +83,7 @@
 .disclaimer {
   font-weight: bold;
 }
+
+select {
+  width: 125px;
+}
