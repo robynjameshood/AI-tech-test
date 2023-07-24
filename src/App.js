@@ -9,6 +9,7 @@ import Logs from './Components/logs';
 import Random from './Components/findRandom';
 import RandomByCategory from './Components/randomByCategory';
 import FindByDescription from './Components/findBookByDescription';
+import FindByCategory from './Components/findBookByCategory';
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
             <Route>
               <Route path='/find-book' element={<FindBook />} />
               <Route path='/find-book-by-description' element={<FindByDescription />} />
+              <Route path='/find-book-by-category' element={<FindByCategory />} />
               <Route path='/random-book' element={<Random />} />
               <Route path='/random-by-category' element={<RandomByCategory />} />
               <Route path='/categories' element={<Categories />} />

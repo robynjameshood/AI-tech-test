@@ -6,6 +6,7 @@ const NavBar = () => {
         <>
             <Link to="/find-book">Find A Book</Link>
             <Link to="/find-book-by-description">Find A Book By Description</Link>
+            <Link to="/find-book-by-category">Find A Book By Category</Link>
             <Link to="/random-book">Find A Random Book</Link>
             <Link to="/random-by-category">Find A Random Book By Category</Link>
             <Link to="/categories">Browse Categories</Link>
