@@ -68,10 +68,10 @@ const FindByDescription = ({ userId}) => {
     return (
         <>
             <div className='form-container'>
-                <div className='label'>Please enter the description of the book you wish to find:
+                <div className='label'>
                 </div>
                 <form onSubmit={(e) => handleSubmit(e)}>
-                    <input type="text" onChange={(e) => setDescription(e.target.value)}></input>
+                    <input type="text" placeholder='Enter description' onChange={(e) => setDescription(e.target.value)}></input>
                 </form>
             </div>
             {books.length > 0 ? <div className='filter-buttons'> <div className='filter'>Filter By Category

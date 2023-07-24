@@ -66,10 +66,8 @@ const FindByCategory = ({ userId}) => {
     return (
         <>
             <div className='form-container'>
-                <div className='label'>Please enter the category of the book you wish to find:
-                </div>
                 <form onSubmit={(e) => handleSubmit(e)}>
-                    <input type="text" onChange={(e) => setCategory(e.target.value)}></input>
+                    <input type="text" placeholder='Enter category' onChange={(e) => setCategory(e.target.value)}></input>
                 </form>
             </div>
             {books.length ? <div className='filter-buttons'> <div className='filter'>Filter By Category
