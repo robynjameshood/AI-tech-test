@@ -94,7 +94,7 @@ const FindBook = ({ userId}) => {
                 {books ? books.map((item, key) => {
                     return (
                         <>
-                            <div className='row-data'>{item.API}</div>
+                            <div key={key} className='row-data'>{item.API}</div>
                             <div className='row-data'>{item.Description}</div>
                             <div className='row-data'>{item.Category}</div>
                             <div className='row-data'>{item.Link}</div>

@@ -42,10 +42,10 @@ const Logs = ({ userId }) => {
                 <div id='activity'>Activity</div>
                 <div id='request'>Request</div>
                 <div id='sql'>SQL Statememt</div>
-                {logs ? logs.map(item => {
+                {logs ? logs.map((item, key) => {
                 return (
                     <>
-                        <div className="row-data">UserID: {item.userId}</div>
+                        <div key={key} className="row-data">UserID: {item.userId}</div>
                         <div className="row-data">Date: {formatDate(item.date)}</div>
                         <div className="row-data">Activity: {item.activity}</div>
                         <div className="row-data">Request: {item.request}</div>
