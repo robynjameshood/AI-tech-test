@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const Random = ({ userId}) => {
+const Random = ({ userId }) => {
     const [books, setBooks] = useState([]);
 
     async function randomBook(e) {
@@ -20,10 +20,10 @@ const Random = ({ userId}) => {
                 }
             })
 
-        updateLogs("random book search");
+        updateLogs("random book search", userId);
     }
 
-    function updateLogs(activity) {
+    function updateLogs(activity, userId) {
         let activities = JSON.parse(localStorage.getItem("activities")) || [];
 
         activities.push({

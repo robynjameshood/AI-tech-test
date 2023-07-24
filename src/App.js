@@ -30,7 +30,7 @@ const userId = 111;
               <Route path='/find-book' element={<FindBook userId={userId}/>} />
               <Route path='/find-book-by-description' element={<FindByDescription userId={userId}/>} />
               <Route path='/find-book-by-category' element={<FindByCategory userId={userId}/>} />
-              <Route path='/random-book' element={<Random />} userId={userId}/>
+              <Route path='/random-book' element={<Random userId={userId}/>} />
               <Route path='/random-by-category' element={<RandomByCategory userId={userId}/>} />
               <Route path='/random-by-description' element={<RandomByDescription userId={userId}/>} />
               <Route path='/random-by-title' element={<RandomByTitle userId={userId}/>} />
